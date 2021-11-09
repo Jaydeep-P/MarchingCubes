@@ -3,8 +3,8 @@ import random
 from sphere import Sphere
 
 
-def rnd(lim=1):
-	return (random.random()*10000)%lim
+def rnd(left,right):
+	return left + (random.random()*10000)%(right-left)
 
 def getDist(a,b):
 	a1 = abs(a[0]-b[0])
@@ -14,7 +14,8 @@ def getDist(a,b):
 
 def newSphere():
 	from main import width
-	return Sphere( rnd(width/10)+ width/10 , [rnd(width),rnd(width),rnd(width)] , [rnd()*width/100,rnd()*width/100,rnd()*width/100] )
+	radius = rnd(0,width/20)+ width/20
+	return Sphere( radius , [rnd(radius+2,width-radius-2),rnd(radius+2,width-radius-2),rnd(radius+2,width-radius-2)] , [rnd(1,2)*2.5,rnd(1,2)*2.5,rnd(1,2)*2.5] )
 
 
 def printArr(arr):
@@ -143,11 +144,13 @@ def getIndex(arr, index):
 
 
 
-def makeSTL(arr):
-	print("solid ")
-	for el in arr:
-		print(f"facet\n  outer loop\n    vertex {el[0][0]} {el[0][1]} {el[0][2]}\n    vertex {el[1][0]} {el[1][1]} {el[1][2]}\n    vertex {el[2][0]} {el[2][1]} {el[2][2]}\n  endloop\nendfacet\n")
-	print("endsolid ")
+def makeSTL(arr,index):
+
+	with open(f'output/{index}.stl', 'w') as f:
+		f.write("solid \n")
+		for el in arr:
+			f.write(f"facet\n  outer loop\n    vertex {el[0][0]} {el[0][1]} {el[0][2]}\n    vertex {el[1][0]} {el[1][1]} {el[1][2]}\n    vertex {el[2][0]} {el[2][1]} {el[2][2]}\n  endloop\nendfacet\n\n")
+		f.write("endsolid \n")
 
 
 def makeFacets(arr):
