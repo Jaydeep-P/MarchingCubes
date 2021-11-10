@@ -2,6 +2,8 @@
 
 Naive implementation of the marching cubes algorithm in Python, this is extremely unoptimised code both in terms of memory and time complexity( not to mention that the code is written in Python)
 
+![](./anim.gif)
+
 The code simply makes .STL files by putting the vertices in a file that can later be animated ( in my case using blender) the points being used for the input are generated using a basic "meatball" algorithm.
 
 Ways the code can be optimised:
