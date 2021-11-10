@@ -6,10 +6,19 @@ class Sphere(object):
 		self.c = center
 		self.v = velocity
 
+
+	def collisionHandler(self,width):
+		for i in range(3):
+			if self.c[i]+(self.r*2)>=width:
+				self.v[i] *= -1
+			if self.c[i]-(self.r*2)<=0:
+				self.v[i] *=-1
+
 	def updatePos(self,width):
 		for i in range(3):
 			self.c[i] += self.v[i]
-			self.c[i] = (self.c[i] + width)%width	#roll over (this is shit, do collision with bounding box)
+			# self.c[i] = (self.c[i] + width)%width	#roll over (this is shit, do collision with bounding box)
+		self.collisionHandler(width)
 
 	def getVal(self,pos):
 		a = (pos[0]-self.c[0])

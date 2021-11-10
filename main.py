@@ -3,7 +3,7 @@ from sphere import Sphere
 
 import time
 
-numFrames = 150
+numFrames = 1
 
 width = 100  #w*w*w = 1,000,000
 
@@ -15,7 +15,7 @@ width = 100  #w*w*w = 1,000,000
 
 # exactly a N^3 algorithm
 
-numSpheres = 6
+numSpheres = 8
 
 def main():
 
@@ -41,7 +41,7 @@ def main():
 		for i in range(len(slist)):
 			slist[i].updatePos(width)
 		print("- %s s -" % (time.time() - start_time))
-		print('-',100*(index/30),'%')
+		print('-',100*((index+1)/numFrames),'%')
 
 
 if __name__ == '__main__':

@@ -13,9 +13,9 @@ def getDist(a,b):
 	return sqrt(a1*a1 + a2*a2 + a3*a3)
 
 def newSphere():
-	from main import width
-	radius = rnd(0,width/20)+ width/20
-	return Sphere( radius , [rnd(radius+2,width-radius-2),rnd(radius+2,width-radius-2),rnd(radius+2,width-radius-2)] , [rnd(1,2)*2.5,rnd(1,2)*2.5,rnd(1,2)*2.5] )
+	from main import width as w
+	r = rnd(w/20,w/15) + 20
+	return Sphere( r - 20 , [rnd(r,w-r),rnd(r,w-r),rnd(r,w-r)] , [rnd(0,1)*w/50.0,rnd(0,1)*w/50.0,rnd(0,1)*w/50.0] )
 
 
 def printArr(arr):
@@ -146,7 +146,7 @@ def getIndex(arr, index):
 
 def makeSTL(arr,index):
 
-	with open(f'output/{index}.stl', 'w') as f:
+	with open(f'output/op-{index}.stl', 'w') as f:
 		f.write("solid \n")
 		for el in arr:
 			f.write(f"facet\n  outer loop\n    vertex {el[0][0]} {el[0][1]} {el[0][2]}\n    vertex {el[1][0]} {el[1][1]} {el[1][2]}\n    vertex {el[2][0]} {el[2][1]} {el[2][2]}\n  endloop\nendfacet\n\n")
